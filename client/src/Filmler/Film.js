@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Link, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, Route, Switch } from "react-router-dom";
 import KaydedilenlerListesi from "./KaydedilenlerListesi";
 
 export default function Film(props) {
