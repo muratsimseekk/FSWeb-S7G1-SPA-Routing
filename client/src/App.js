@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import KaydedilenlerListesi from "./Filmler/KaydedilenlerListesi";
-import { Switch } from "react-router-dom";
+
 import FilmListesi from "./Filmler/FilmListesi";
+import { Route, Switch } from "react-router-dom";
 
 export default function App() {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
@@ -37,18 +38,18 @@ export default function App() {
   return (
     <div>
       <Switch>
-        <KaydedilenlerListesi
-          list={
-            [
-              /* Burası esnek */
-            ]
-          }
-        />
+        <Route path="/" exact>
+          <KaydedilenlerListesi
+            list={
+              [
+                /* Burası esnek */
+              ]
+            }
+          />
+
+          <FilmListesi movies={movieList}></FilmListesi>
+        </Route>
       </Switch>
-      <Switch>
-        <FilmListesi movies={movieList}></FilmListesi>
-      </Switch>
-      <div>Bu Div'i kendi Routelarınızla değiştirin</div>
     </div>
   );
 }
