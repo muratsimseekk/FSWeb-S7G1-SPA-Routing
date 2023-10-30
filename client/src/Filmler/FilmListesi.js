@@ -25,7 +25,7 @@ function FilmDetayları(props) {
       <div className="movie-metascore">
         Metascore: <strong>{metascore}</strong>
       </div>
-      <Link to={`/film/${id}`}>Button</Link>
+      <Link to={`/film/${id}`}>Detayları Görüntüle</Link>
     </div>
   );
 }
