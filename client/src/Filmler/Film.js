@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import KaydedilenlerListesi from "./KaydedilenlerListesi";
 
 export default function Film(props) {
   const [movie, setMovie] = useState();
-
-  let id = 1;
+  console.log("props", props);
+  // let id = 1;
   // URL'den alınan :id parametresini bu değişkene aktarın
 
+  const { productID } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/api/filmler/:${id}`) // Bu uç noktayı Postman'le çalışın
+      .get(`http://localhost:5001/api/filmler/${productID}`) // Bu uç noktayı Postman'le çalışın
       .then((response) => {
         setMovie(response.data);
-        console.log(response.data);
+        // console.log("filmlerden gelen", response.data);
         // Bu kısmı log statementlarıyla çalışın
         // ve burdan gelen response'u 'movie' e aktarın
       })
@@ -21,7 +25,7 @@ export default function Film(props) {
       });
     // Bu effect her `id ` değiştiğinde çalışmalı
     // Bunu nasıl gerçekleştirebiliriz?
-  }, []);
+  }, [productID]);
 
   // Yalnızca esnek görevlere geçtiğinizde burdaki yorum etiketini kaldırın
   // const filmiKaydet = evt => { }
@@ -44,7 +48,7 @@ export default function Film(props) {
         </div>
         <h3>Actors</h3>
 
-        {stars.map((star) => (
+        {stars?.map((star) => (
           <div key={star} className="movie-star">
             {star}
           </div>
